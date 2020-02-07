@@ -12,9 +12,7 @@ const firebaseConfig = {
   appId: "1:936880678508:web:4d0ebd14acdb0e29e55a49",
   measurementId: "G-BV570WRDX1"
 };
-console.log(process.env)
 
-console.log(process.env.REACT_APP_FIREBASE_API_KEY)
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
 

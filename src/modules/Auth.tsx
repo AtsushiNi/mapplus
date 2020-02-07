@@ -3,7 +3,8 @@ import actionCreatorFactory from 'typescript-fsa'
 import { AuthActions } from '../containers/AuthContainer'
 import { ReduxState } from '../store'
 import * as React from 'react'
-import { Text, Button, View, StyleSheet } from 'react-native'
+import { Text } from 'react-native'
+import { Route, Redirect } from 'react-router-dom'
 
 // actions
 const actionCreator = actionCreatorFactory()
@@ -31,36 +32,27 @@ export const authReducer = reducerWithInitialState<UserInfo>(initialState)
   })
 
 // component
-type Props = ReduxState & AuthActions
+export type Props = ReduxState & AuthActions
 
 export class Auth extends React.Component<Partial<Props>> {
+  private isLoading: boolean = true
+
   componentDidMount() {
     this.props.refLogin()
+    this.isLoading = false
   }
 
   render() {
     const { userInfo } = this.props
+    const isLoading = this.isLoading
 
     return (
-      <View style={styles.container}>
-        <Text>
-          You: {userInfo && userInfo.uuid ? userInfo.displayName : '.env書こうな'}
-        </ Text>
-        {
-          userInfo && userInfo.uuid ? (
-            <Button title="Google Logout" onPress={this.props.logout} />
-          ) : (
-            <Button title="Google Login" onPress={this.props.login} />
+      (userInfo && userInfo.uuid)
+        ? <Route children={this.props.children} />
+        : (isLoading
+            ? <Text>Loading</Text>
+            : <Redirect to={'/login'} />
           )
-        }
-      </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center'
-  }
-})

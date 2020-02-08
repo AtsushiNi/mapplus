@@ -3,7 +3,7 @@ import { View, Button, SafeAreaView } from 'react-native'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'
-import { createSwitchNavigator, createAppContainer } from 'react-navigation'
+import { createSwitchNavigator } from 'react-navigation'
 
 // 各コンポーネント
 import HomeContainer from './containers/HomeContainer'
@@ -42,17 +42,15 @@ const SignedOut = createStackNavigator(
 )
 
 // SwitchNavigatorの定義
-const Navigation = createAppContainer(
-  createSwitchNavigator(
-    {
-      SignedIn: SignedIn,
-      SignedOut: SignedOut,
-      Loading: Loading
-    },
-    {
-      initialRouteName: 'Loading'
-    }
-  )
+const Navigation = createSwitchNavigator(
+  {
+    SignedIn: SignedIn,
+    SignedOut: SignedOut,
+    Loading: Loading
+  },
+  {
+    initialRouteName: 'Loading'
+  }
 )
 
 export default Navigation

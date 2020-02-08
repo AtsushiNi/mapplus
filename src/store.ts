@@ -1,5 +1,7 @@
 import { combineReducers, createStore } from 'redux'
 import { UserInfo, authReducer } from './modules/Auth'
+import { createNavigationReducer } from 'react-navigation-redux-helpers'
+import Navigation from './navigations'
 
 export type ReduxState = {
   userInfo: UserInfo
@@ -7,7 +9,8 @@ export type ReduxState = {
 
 const store = createStore(
   combineReducers<ReduxState>({
-    userInfo: authReducer
+    navigationModule: createNavigationReducer(Navigation),
+    userModule: authReducer
   })
 )
 

@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/atsushi/.anyenv/envs/nodenv/versions/8.12.0/bin/node /usr/local/bin/yarn add @types/react-native-community
+  /Users/atsushi/.anyenv/envs/nodenv/versions/8.12.0/bin/node /usr/local/bin/yarn add @types/react-navigation-redux-helpers
 
 PATH: 
   /Users/atsushi/.anyenv/envs/nodenv/versions/8.12.0/bin:/Users/atsushi/.anyenv/envs/nodenv/libexec:/Users/atsushi/.anyenv/envs/nodenv/plugins/nodenv-vars/bin:/Users/atsushi/.anyenv/envs/nodenv/plugins/nodenv-default-packages/bin:/Users/atsushi/.anyenv/envs/nodenv/plugins/node-build/bin:/Users/atsushi/.anyenv/envs/rbenv/shims:/Users/atsushi/.anyenv/envs/rbenv/bin:/Users/atsushi/.anyenv/envs/pyenv/shims:/Users/atsushi/.anyenv/envs/pyenv/bin:/Users/atsushi/.anyenv/envs/nodenv/shims:/Users/atsushi/.anyenv/envs/nodenv/bin:/Users/atsushi/.anyenv/bin:/Users/atsushi/.anyenv/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS:/Users/atsushi/.anyenv/envs/rbenv/shims:/Users/atsushi/.anyenv/envs/rbenv/bin:/Users/atsushi/.anyenv/envs/pyenv/shims:/Users/atsushi/.anyenv/envs/pyenv/bin:/Users/atsushi/.anyenv/envs/nodenv/shims:/Users/atsushi/.anyenv/envs/nodenv/bin:/Users/atsushi/.anyenv/bin:/Users/atsushi/projects/sales/.nodebrew/current/bin:/usr/local/opt/fzf/bin:/Users/atsushi/projects/sales/.nodebrew/current/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2freact-native-community: Not found
+  Error: https://registry.yarnpkg.com/@types%2freact-navigation-redux-helpers: Not found
       at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66255:18)
       at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:129397:22)
       at emitTwo (events.js:126:13)
@@ -37,6 +37,7 @@ npm manifest:
       "eject": "expo eject"
     },
     "dependencies": {
+      "@react-native-community/masked-view": "^0.1.6",
       "@types/firebase": "^3.2.1",
       "@types/react-dom": "^16.9.5",
       "@types/react-native-dotenv": "^0.2.0",
@@ -1440,6 +1441,11 @@ Lockfile:
       sudo-prompt "^9.0.0"
       wcwidth "^1.0.1"
       ws "^1.1.0"
+  
+  "@react-native-community/masked-view@^0.1.6":
+    version "0.1.6"
+    resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.6.tgz#c7f2ac187c1f25aa8c30d11baa8f4398eca3bb84"
+    integrity sha512-PpMoeXwPUoldCRKDuSi+zK5rT+sJTW6ri6RdGPkSKRzU77Q1d9IaR0O5IKvBj0XSdL3p+dcOa05gk35aGDffBQ==
   
   "@react-navigation/core@^3.5.2":
     version "3.5.2"

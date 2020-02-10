@@ -1,29 +1,51 @@
 import React from 'react'
-import { ReduxState } from '../store'
 import { connect } from 'react-redux'
-import { View, Text } from 'react-native'
+import { thunkToAction } from 'typescript-fsa-redux-thunk'
+import { View, Text, Button } from 'react-native'
+import { bindActionCreators, Dispatch } from 'redux'
+import { NavigationActions } from 'react-navigation'
+import { userModule } from '../modules'
 
-class Loading extends React.Component {
+interface LoadingProps {
+  getUser: typeof userModule.getUser
+  navigate: typeof NavigationActions.navigate
+}
+
+interface LoadingState {}
+
+class Loading extends React.Component<LoadingProps, LoadingState> {
+  componentDidMount() {
+    this.props.getUser()
+  }
+
+  handleClick() {
+    console.log('clicked')
+    this.props.getUser()
+  }
+
   render() {
     return (
-      <View>
+      <View style={{flex: 1, backgroundColor: 'aqua', justifyContent: 'center'}}>
         <Text>loading</Text>
+          <Button title='click'onPress={() => this.handleClick()} color='red'/>
       </View>
     )
   }
 }
 
-const mapStateToProps = (state: ReduxState) => {
-  return (
-    Object.assign({}, {})
-  )
+const mapStateToProps = (state: any)  => {
+  return {
+    ...state
+  }
 }
 
-const mapDispatchToProps = dispatch => {
-  return (
-    Object.assign({}, {})
-  )
-}
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
+  {
+    getUser: thunkToAction(userModule.getUser.action),
+    navigate: NavigationActions.navigate
+  },
+  dispatch
+)
 
 export default connect(
   mapStateToProps,

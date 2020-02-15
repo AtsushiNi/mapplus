@@ -12,8 +12,7 @@ import LoadingScreen from './screens/LoadingScreen'
 import { authModule } from './modules'
 
 export default function App() {
-  const Stack = createStackNavigator()
-
+  // サインイン中のScreen
   const SignedInStack = createStackNavigator()
 
   const SignedInStackScreen = () => {
@@ -25,6 +24,7 @@ export default function App() {
     )
   }
 
+  // サインアウト後のスクリーン(Auth関連の画面)
   const SignedOutStack = createStackNavigator()
 
   const SignedOutStackScreen = () => {
@@ -36,6 +36,23 @@ export default function App() {
     )
   }
 
+  // RootのScreen(ローディング画面、サインイン中、サインアウト後)
+  const RootStack = createStackNavigator()
+
+  const RootStackScreen = () => {
+    return (
+      <RootStack.Navigator>
+        {isLoading
+          ? (<RootStack.Screen name='Loading' component={LoadingScreen} />)
+          : isSignin
+            ? (<RootStack.Screen name='SignedIn' component={SignedInStackScreen} />)
+            : (<RootStack.Screen name='SignedOut' component={SignedOutStackScreen} />)
+        }
+      </RootStack.Navigator>
+    )
+  }
+
+  // firebaseの設定
   initializeFirebase()
 
   const { isLoading, isSignin } = authModule.state
@@ -43,14 +60,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator>
-          {isLoading
-            ? (<Stack.Screen name='Loading' component={LoadingScreen} />)
-            : isSignin
-              ? (<Stack.Screen name='SignedIn' component={SignedInStackScreen} />)
-              : (<Stack.Screen name='SignedOut' component={SignedOutStackScreen} />)
-          }
-        </Stack.Navigator>
+        <RootStackScreen />
       </NavigationContainer>
     </Provider>
   )

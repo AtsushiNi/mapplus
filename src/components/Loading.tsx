@@ -3,12 +3,10 @@ import { connect } from 'react-redux'
 import { thunkToAction } from 'typescript-fsa-redux-thunk'
 import { View, Text, Button } from 'react-native'
 import { bindActionCreators, Dispatch } from 'redux'
-import { NavigationActions } from 'react-navigation'
 import { userModule } from '../modules'
 
 interface LoadingProps {
   getUser: typeof userModule.getUser
-  navigate: typeof NavigationActions.navigate
 }
 
 interface LoadingState {}
@@ -41,8 +39,7 @@ const mapStateToProps = (state: any)  => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   {
-    getUser: thunkToAction(userModule.getUser.action),
-    navigate: NavigationActions.navigate
+    getUser: thunkToAction(userModule.getUser.action)
   },
   dispatch
 )

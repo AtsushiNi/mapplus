@@ -1,7 +1,6 @@
 import { actionCreatorFactory } from 'typescript-fsa'
 import { asyncFactory } from 'typescript-fsa-redux-thunk'
 import firebase from 'firebase'
-import { NavigationActions } from 'react-navigation'
 import { CommonActions } from '@react-navigation/native'
 import User from '../models/user'
 import FluxAction from '../FluxAction'
@@ -25,10 +24,8 @@ export default class UserModule {
     async(params, dispatch) => {
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
-          dispatch(NavigationActions.navigate({ routeName: 'SignedIn' }))
           return User.fromJson(user)
         } else {
-          dispatch(NavigationActions.navigate({ routeName: 'SignedIn' }))
           return null
         }
       })

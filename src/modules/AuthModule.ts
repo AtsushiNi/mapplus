@@ -1,11 +1,11 @@
 export interface AuthModuleState {
   isLoading: boolean,
-  isSignIn: boolean
+  isSignin: boolean
 }
 
 export default class AuthModule {
   state: AuthModuleState = {
     isLoading: true,
-    isSignIn: false
+    isSignin: false
   }
 }

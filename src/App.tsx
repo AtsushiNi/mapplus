@@ -11,50 +11,47 @@ import SignupScreen from './screens/SignupScreen'
 import LoadingScreen from './screens/LoadingScreen'
 import { authModule } from './modules'
 
-export default class App extends React.Component {
+export default function App() {
+  const Stack = createStackNavigator()
 
-  Stack = createStackNavigator()
+  const SignedInStack = createStackNavigator()
 
-  SignedInStack = createStackNavigator()
-
-  SignedInStackScreen = () => {
+  const SignedInStackScreen = () => {
     return (
-      <this.SignedInStack.Navigator>
-        <this.SignedInStack.Screen name='Home' component={HomeScreen} />
-        <this.SignedInStack.Screen name='Detail' component={DetailScreen} />
-      </this.SignedInStack.Navigator>
+      <SignedInStack.Navigator>
+        <SignedInStack.Screen name='Home' component={HomeScreen} />
+        <SignedInStack.Screen name='Detail' component={DetailScreen} />
+      </SignedInStack.Navigator>
     )
   }
 
-  SignedOutStack = createStackNavigator()
+  const SignedOutStack = createStackNavigator()
 
-  SignedOutStackScreen = () => {
+  const SignedOutStackScreen = () => {
     return (
-      <this.SignedOutStack.Navigator>
-        <this.SignedOutStack.Screen name='Signin' component={SigninScreen} />
-        <this.SignedOutStack.Screen name='Signup' component={SignupScreen} />
-      </this.SignedOutStack.Navigator>
+      <SignedOutStack.Navigator>
+        <SignedOutStack.Screen name='Signin' component={SigninScreen} />
+        <SignedOutStack.Screen name='Signup' component={SignupScreen} />
+      </SignedOutStack.Navigator>
     )
   }
 
-  render () {
-    initializeFirebase()
+  initializeFirebase()
 
-    const { isLoading, isSignin } = authModule
+  const { isLoading, isSignin } = authModule.state
 
-    return (
-      <Provider store={store}>
-        <NavigationContainer>
-          <this.Stack.Navigator>
-            {isLoading
-              ? (<this.Stack.Screen name='Loading' component={LoadingScreen} />)
-              : isSignin
-                ? (<this.Stack.Screen name='SignedIn' component={this.SignedInStackScreen} />)
-                : (<this.Stack.Screen name='SignedOut' component={this.SignedOutStackScreen} />)
-            }
-          </this.Stack.Navigator>
-        </NavigationContainer>
-      </Provider>
-    )
-  }
+  return (
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          {isLoading
+            ? (<Stack.Screen name='Loading' component={LoadingScreen} />)
+            : isSignin
+              ? (<Stack.Screen name='SignedIn' component={SignedInStackScreen} />)
+              : (<Stack.Screen name='SignedOut' component={SignedOutStackScreen} />)
+          }
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
+  )
 }

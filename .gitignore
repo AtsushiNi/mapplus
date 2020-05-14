@@ -1,3 +1,4 @@
+node_modules/*
 .expo/*
 npm-debug.*
 *.jks
@@ -13,4 +14,6 @@ web-report/
 .DS_Store
 
 yarn-error.log
-env.ts
+
+# これやっちゃダメだけど、消えたらイヤだからgit管理にいれる
+# env.ts
